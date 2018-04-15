@@ -6,6 +6,19 @@ original authors of the model.
 Repository contains Dockerfiles and scripts for easy starting w/ this model in
 any clean (or not) environment, with Docker and Nvidia drivers.
 
+### Note
+
+Unfortunately, these dockerfiles turned out to be unnecessary for the reason
+that there wasn't Docker on
+[the Lomonosov-2 supercomputer of the Moscow State University](http://parallel.ru/cluster),
+where the model was finally launched. You can use this dockerfiles, but Idk, is
+this dockerfiles are correct or not.
+
+All that's related to the launch of this model on the MSU supercomputer is
+described in the
+[README file in `msu-supercomputer`](msu-supercomputer/README.md) (see repo
+files list).
+
 ### Getting started
 
 #### Cloning
@@ -57,7 +70,7 @@ After that, you can access and use terminal via Jupyter.
 The container will be named as `aidence-container`. That's needed for `stop`
 script.
 
-#### Running Docker container
+#### Stopping Docker container
 
 The container can be stopped by `stop` script:
 
