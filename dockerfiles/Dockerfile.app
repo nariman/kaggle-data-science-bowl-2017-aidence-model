@@ -12,9 +12,9 @@ RUN pip3 install \
         pycuda \
         dicom \
         scikit-learn \
-        scipy \
+        scipy==0.17.0 \
         SimpleITK \
-        tensorflow-gpu
+        tensorflow-gpu==1.1
 
 # Clone repo, remove .git directory
 RUN git clone https://bitbucket.org/aidence/kaggle-data-science-bowl-2017.git ./code && \
