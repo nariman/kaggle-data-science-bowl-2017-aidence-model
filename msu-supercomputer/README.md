@@ -5,6 +5,7 @@ See [general README](../README.md) first.
 ### Steps
 
 * [Inspecting environment](#inspecting-environment)
+* [Compiling Python](#compiling-python)
 
 ## Step-by-step guide (for myself, lol (not really, lol))
 
@@ -16,7 +17,7 @@ Let's inspect:
 * ...
 * There's GNU compilers for C/C++ (and, maybe, for other languages)
 * There's CUDA version 8 and 9 drivers
-* There's is no Docker...
+* There's no Docker... Wait, what?!?
 * ...
 * We need own Python for independence of the default one
 * We need to use Python environments for isolation (I still want the Docker!1)
@@ -53,3 +54,56 @@ mkdir sources
 ```
 touch init
 ```
+
+### Compiling Python
+
+Authors of the model had used Python 3.4, but pointed that we can use higher
+versions. The latest one is Python 3.6.5.
+
+```
+cd sources
+```
+
+Download it (did you remember, that we have `wget`?):
+
+```
+wget https://www.python.org/ftp/python/3.6.5/Python-3.6.5.tgz
+```
+
+Extract:
+
+```
+tar xvf Python-3.6.5.tgz
+```
+
+Move to the extracted Python-3.6.5 directory:
+
+```
+cd Python-3.6.5
+```
+
+Configure the build. We need the custom installation directory. It can be
+specified with a `--prefix` option.
+
+Create this directory:
+
+```
+mkdir $HOME/kaggle-data-science-bowl-2017-aidence-model/bin/python-3.6.5
+```
+
+And configure:
+
+```
+./configure --prefix=$HOME/kaggle-data-science-bowl-2017-aidence-model/bin/python-3.6.5
+```
+
+Build, test, and install Python:
+
+```
+make
+make test
+make install
+```
+
+It should be OK (except the fact that there's many errors on a test stage...
+just... just forget about this).
