@@ -5,9 +5,10 @@ See [general README](../README.md) first.
 ### Steps
 
 * [Inspecting environment](#inspecting-environment)
+* [Setting up the system environment](#setting-up-the-system-environment)
 * [Compiling Python](#compiling-python)
 
-## Step-by-step guide (for myself, lol (not really, lol))
+## Step-by-step guide (for myself, lol (not really, lol))0
 
 ### Inspecting environment
 
@@ -15,13 +16,14 @@ Let's inspect:
 * We have an access to the supercomputer
 * Together with us there're uncountable number of users
 * ...
+* Front machine is a CentOS Linux 7
 * There's GNU compilers for C/C++ (and, maybe, for other languages)
 * There's CUDA version 8 and 9 drivers
 * There's no Docker... Wait, what?!?
 * ...
-* We need own Python for independence of the default one
+* We need own Python for independence from the default one
 * We need to use Python environments for isolation (I still want the Docker!1)
-* We need a tool for 7zip files (Yes, Kaggle's datasets in a 7zip archives...)
+* We need a tool for 7zip files (Yes, Kaggle's datasets in 7zip archives...)
 * ...
 * OMG, we have `wget`
 
@@ -29,8 +31,8 @@ OK. Let's create the directory for our project and start environment
 preparation.
 
 ```
-mkdir kaggle-data-science-bowl-2017-aidence-model
-cd kaggle-data-science-bowl-2017-aidence-model
+mkdir $HOME/kaggle-data-science-bowl-2017-aidence-model
+cd $HOME/kaggle-data-science-bowl-2017-aidence-model
 ```
 
 Our directory structure:
@@ -55,13 +57,47 @@ mkdir sources
 touch init
 ```
 
+### Setting up the system environment
+
+We already has NVIDIA drivers, CUDA binaries and libraries. But default
+environment variables uses CUDA version 8. What kind of dinosaurs uses that...
+Replace!  
+If you don't have all the drivers, install it by googling.
+Paths are correct for the supercomputer. You should find these by yourself.
+
+```
+cd $HOME/kaggle-data-science-bowl-2017-aidence-model
+```
+
+```
+vi init
+```
+
+```
+# Replace some envs
+
+# Set newer CUDA binaries
+export PATH=/opt/cuda/cuda-9.0/bin:$PATH
+
+# Set newer CUDA libraries
+export LD_LIBRARY_PATH=/opt/cuda/cuda-9.0/lib64:$LD_LIBRARY_PATH
+
+# Set newer CUDA home
+export CUDA_HOME=/opt/cuda/cuda-9.0
+
+# Set Nvidia drivers libraries
+export LD_LIBRARY_PATH=/opt/cuda/nvidia-libs-346.96/lib64:$LD_LIBRARY_PATH
+```
+
+Save and close (just a reminder: `:wq`).
+
 ### Compiling Python
 
 Authors of the model had used Python 3.4, but pointed that we can use higher
 versions. The latest one is Python 3.6.5.
 
 ```
-cd sources
+cd $HOME/kaggle-data-science-bowl-2017-aidence-model/sources
 ```
 
 Download it (did you remember, that we have `wget`?):
@@ -76,7 +112,7 @@ Extract:
 tar xvf Python-3.6.5.tgz
 ```
 
-Move to the extracted Python-3.6.5 directory:
+Move to the extracted `Python-3.6.5` directory:
 
 ```
 cd Python-3.6.5
@@ -105,5 +141,40 @@ make test
 make install
 ```
 
-It should be OK (except the fact that there's many errors on a test stage...
-just... just forget about this).
+It should be OK... Except the fact that there's many errors on a test stage...
+just... just forget about this, it will work, I promise... It should... It
+must...
+
+Check that Python works as expected:
+
+```
+$HOME/kaggle-data-science-bowl-2017-aidence-model/bin/python-3.6.5/bin/python3
+```
+
+```python
+Python 3.6.5 (default, Apr 16 2018, 16:21:10)
+[GCC 4.8.5 20150623 (Red Hat 4.8.5-4)] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> exit()
+```
+
+It works!
+
+Now any calls to `python3` should run our compiled Python. Change the `init` file:
+
+```
+cd $HOME/kaggle-data-science-bowl-2017-aidence-model
+```
+
+```
+vi init
+```
+
+Add the following:
+
+```
+# Set default Python installation
+export PATH=$HOME/kaggle-data-science-bowl-2017-aidence-model/bin/python-3.6.5/bin:$PATH
+```
+
+Save and close.
