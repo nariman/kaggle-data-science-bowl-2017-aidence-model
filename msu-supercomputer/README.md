@@ -8,6 +8,8 @@ See [general README](../README.md) first.
 * [Setting up the system environment](#setting-up-the-system-environment)
 * [Compiling Python](#compiling-python)
 * [Creating virtual environment](#creating-virtual-environment)
+* **NOTE** [About activating our environment](#about-activating-our-environment)
+* [Installing Python dependencies](#installing-python-dependencies)
 
 ## Step-by-step guide (for myself, lol (not really, lol))0
 
@@ -173,7 +175,7 @@ $ cd $HOME/kaggle-data-science-bowl-2017-aidence-model
 ```
 
 ```bash
-vi init
+$ vi init
 ```
 
 Add the following:
@@ -215,7 +217,7 @@ $ python3 -m venv venv
 First `venv` is a module name (Python's virtual environments).  
 Second `venv` is our name.
 
-Note that we can't to move created virtual environments. We can, but it's
+Note that we can't move created virtual environments. We can, but it's
 unnecessary headache.
 
 Activate the venv:
@@ -225,3 +227,61 @@ $ . ./venv/bin/activate
 ```
 
 Now `python` should runs our compiled Python.
+
+### About activating our environment
+
+Now in next steps our `init` file with system environment should be sourced
+first. Also, virtual environment should be activated, if needed.  
+**You should source `init` each time you logged in into the server, and
+activate virtual enviroment each time you want to use the Python with installed
+dependencies.**  
+Also don't forget to re-login after you changes the `init` file (it can be
+handled in a more convenient way, but re-login was fast for me because of RSA
+key)
+
+```bash
+$ cd $HOME/kaggle-data-science-bowl-2017-aidence-model
+```
+
+```bash
+$ . ./init
+```
+
+```bash
+$ . ./venv/bin/activate
+```
+
+### Installing Python dependencies
+
+There was a problem, that one of dependencies, `pycuda`, wants a `numpy` at the
+installation process. Really strange, but that's why I splitted dependencies
+installation into two parts.
+
+Respect all authors' version requirements, except `tensorflow` package (it
+should be OK to use newer version, because of backward compatibility). Virtual
+environment should be activated.
+
+```bash
+$ pip install --upgrade pip
+$ pip install \
+        jupyter \
+        numpy \
+        opencv-contrib-python \
+        PyYAML
+$ pip install \
+        pandas \
+        pycuda \
+        dicom \
+        scikit-learn \
+        scipy==0.17.0 \
+        SimpleITK \
+        tensorflow-gpu==1.5
+```
+
+(Tried to install this:
+[Error: Two Many Redirects](https://github.com/pypa/warehouse/issues/3702)...
+Why now?)  
+(Oh, OK. [Now getting 404s](https://github.com/pypa/warehouse/issues/3705)...
+Where's my cat videos on YouTube...)
+
+All should be OK.
