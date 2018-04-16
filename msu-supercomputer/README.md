@@ -10,6 +10,7 @@ See [general README](../README.md) first.
 * [Creating virtual environment](#creating-virtual-environment)
 * **NOTE** [About activating our environment](#about-activating-our-environment)
 * [Installing Python dependencies](#installing-python-dependencies)
+* [Compiling `p7zip`](#compiling-p7zip)
 
 ## Step-by-step guide (for myself, lol (not really, lol))0
 
@@ -204,7 +205,7 @@ All right.
 
 ### Creating virtual environment
 
-Create virtual environment. I called it `venv`. Simple.
+Create a virtual environment. I called it `venv`. Simple.
 
 ```bash
 $ cd $HOME/kaggle-data-science-bowl-2017-aidence-model
@@ -215,7 +216,7 @@ $ python3 -m venv venv
 ```
 
 First `venv` is a module name (Python's virtual environments).  
-Second `venv` is our name.
+Second `venv` is our virtual environment name.
 
 Note that we can't move created virtual environments. We can, but it's
 unnecessary headache.
@@ -230,13 +231,13 @@ Now `python` should runs our compiled Python.
 
 ### About activating our environment
 
-Now in next steps our `init` file with system environment should be sourced
-first. Also, virtual environment should be activated, if needed.  
+In next steps our `init` file with system environment should be sourced first.
+Also, virtual environment should be activated, if needed.  
 **You should source `init` each time you logged in into the server, and
 activate virtual enviroment each time you want to use the Python with installed
 dependencies.**  
-Also don't forget to re-login after you changes the `init` file (it can be
-handled in a more convenient way, but re-login was fast for me because of RSA
+Also don't forget to re-login after you changed the `init` file (it can be
+handled in a more convenient way, but re-login is fast for me because of RSA
 key)
 
 ```bash
@@ -285,3 +286,67 @@ Why now?)
 Where's my cat videos on YouTube...)
 
 All should be OK.
+
+### Compiling `p7zip`
+
+In next steps we'll download our datasets. Fortunately, this process is done
+for me, but `p7zip` is needed for extracting Kaggle's datasets.
+
+```bash
+$ cd $HOME/kaggle-data-science-bowl-2017-aidence-model/sources
+```
+
+Download latest `p7zip`:
+
+```bash
+$ wget https://sourceforge.net/projects/p7zip/files/latest/download?source=files -O p7zip.tar.bz2
+```
+
+Extract:
+
+```bash
+$ tar xvf p7zip.tar.bz2
+```
+
+Move to the extracted directory. In my case, it's a `p7zip_16.02`:
+
+```bash
+$ cd p7zip_16.02
+```
+
+Build:
+
+```bash
+$ make
+```
+
+Create binary directory for our `p7zip`:
+
+```bash
+$ mkdir $HOME/kaggle-data-science-bowl-2017-aidence-model/bin/p7zip
+```
+
+And copy compiled binary to the created directory:
+
+```bash
+$ cp ./bin/7za $HOME/kaggle-data-science-bowl-2017-aidence-model/bin/p7zip/
+```
+
+Now add `7za` to the system environment:
+
+```bash
+$ cd $HOME/kaggle-data-science-bowl-2017-aidence-model
+```
+
+```bash
+$ vi init
+```
+
+Add the following:
+
+```bash
+# Set p7zip binary path
+export PATH=$HOME/kaggle-data-science-bowl-2017-aidence-model/bin/p7zip:$PATH
+```
+
+`7za` should be available to run after sourcing `init`.
