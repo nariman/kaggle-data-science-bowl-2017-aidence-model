@@ -30,9 +30,9 @@ Let's inspect:
 OK. Let's create the directory for our project and start environment
 preparation.
 
-```
-mkdir $HOME/kaggle-data-science-bowl-2017-aidence-model
-cd $HOME/kaggle-data-science-bowl-2017-aidence-model
+```bash
+$ mkdir $HOME/kaggle-data-science-bowl-2017-aidence-model
+$ cd $HOME/kaggle-data-science-bowl-2017-aidence-model
 ```
 
 Our directory structure:
@@ -47,14 +47,14 @@ Our directory structure:
 Also there should be a file for system environment additions. I'll name it as
 `init`.
 
-```
-mkdir bin
-mkdir datasets
-mkdir sources
+```bash
+$ mkdir bin
+$ mkdir datasets
+$ mkdir sources
 ```
 
-```
-touch init
+```bash
+$ touch init
 ```
 
 ### Setting up the system environment
@@ -65,15 +65,15 @@ Replace!
 If you don't have all the drivers, install it by googling.
 Paths are correct for the supercomputer. You should find these by yourself.
 
-```
-cd $HOME/kaggle-data-science-bowl-2017-aidence-model
-```
-
-```
-vi init
+```bash
+$ cd $HOME/kaggle-data-science-bowl-2017-aidence-model
 ```
 
+```bash
+$ vi init
 ```
+
+```bash
 # Replace some envs
 
 # Set newer CUDA binaries
@@ -96,26 +96,26 @@ Save and close (just a reminder: `:wq`).
 Authors of the model had used Python 3.4, but pointed that we can use higher
 versions. The latest one is Python 3.6.5.
 
-```
-cd $HOME/kaggle-data-science-bowl-2017-aidence-model/sources
+```bash
+$ cd $HOME/kaggle-data-science-bowl-2017-aidence-model/sources
 ```
 
 Download it (did you remember, that we have `wget`?):
 
-```
-wget https://www.python.org/ftp/python/3.6.5/Python-3.6.5.tgz
+```bash
+$ wget https://www.python.org/ftp/python/3.6.5/Python-3.6.5.tgz
 ```
 
 Extract:
 
-```
-tar xvf Python-3.6.5.tgz
+```bash
+$ tar xvf Python-3.6.5.tgz
 ```
 
 Move to the extracted `Python-3.6.5` directory:
 
-```
-cd Python-3.6.5
+```bash
+$ cd Python-3.6.5
 ```
 
 Configure the build. We need the custom installation directory. It can be
@@ -123,58 +123,76 @@ specified with a `--prefix` option.
 
 Create this directory:
 
-```
-mkdir $HOME/kaggle-data-science-bowl-2017-aidence-model/bin/python-3.6.5
+```bash
+$ mkdir $HOME/kaggle-data-science-bowl-2017-aidence-model/bin/python-3.6.5
 ```
 
 And configure:
 
-```
-./configure --prefix=$HOME/kaggle-data-science-bowl-2017-aidence-model/bin/python-3.6.5
+```bash
+$ ./configure --prefix=$HOME/kaggle-data-science-bowl-2017-aidence-model/bin/python-3.6.5
 ```
 
 Build, test, and install Python:
 
-```
-make
-make test
-make install
+```bash
+$ make
+$ make test
+$ make install
 ```
 
-It should be OK... Except the fact that there's many errors on a test stage...
-just... just forget about this, it will work, I promise... It should... It
-must...
+It should be OK...  
+Except the fact that there's many errors on a test stage...  
+Just... just forget about this.  
+It will work, I promise...  
+It should...  
+It must...
 
 Check that Python works as expected:
 
-```
-$HOME/kaggle-data-science-bowl-2017-aidence-model/bin/python-3.6.5/bin/python3
+```bash
+$ $HOME/kaggle-data-science-bowl-2017-aidence-model/bin/python-3.6.5/bin/python3
 ```
 
 ```python
 Python 3.6.5 (default, Apr 16 2018, 16:21:10)
 [GCC 4.8.5 20150623 (Red Hat 4.8.5-4)] on linux
 Type "help", "copyright", "credits" or "license" for more information.
->>> exit()
+>>>
 ```
 
 It works!
 
 Now any calls to `python3` should run our compiled Python. Change the `init` file:
 
-```
-cd $HOME/kaggle-data-science-bowl-2017-aidence-model
+```bash
+$ cd $HOME/kaggle-data-science-bowl-2017-aidence-model
 ```
 
-```
+```bash
 vi init
 ```
 
 Add the following:
 
-```
+```bash
 # Set default Python installation
 export PATH=$HOME/kaggle-data-science-bowl-2017-aidence-model/bin/python-3.6.5/bin:$PATH
 ```
 
 Save and close.
+
+Try to source our `init` script:
+
+```bash
+$ . ./init
+```
+
+Now you should able to call `python3`, that runs our compiled Python.
+
+```bash
+$ which python3
+~/kaggle-data-science-bowl-2017-aidence-model/bin/python-3.6.5/bin/python3
+```
+
+All right.
