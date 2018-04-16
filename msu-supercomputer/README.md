@@ -11,6 +11,8 @@ See [general README](../README.md) first.
 * **NOTE** [About activating our environment](#about-activating-our-environment)
 * [Installing Python dependencies](#installing-python-dependencies)
 * [Compiling `p7zip`](#compiling-p7zip)
+* [Downloading Kaggle's datasets](#downloading-kaggles-datasets)
+* [Downloading LIDC-IDRI datasets](#downloading-lidc-idri-datasets)
 
 ## Step-by-step guide (for myself, lol (not really, lol))0
 
@@ -289,8 +291,8 @@ All should be OK.
 
 ### Compiling `p7zip`
 
-In next steps we'll download our datasets. Fortunately, this process is done
-for me, but `p7zip` is needed for extracting Kaggle's datasets.
+In next steps we'll download our datasets. `p7zip` is needed for extracting
+Kaggle's datasets.
 
 ```bash
 $ cd $HOME/kaggle-data-science-bowl-2017-aidence-model/sources
@@ -350,3 +352,11 @@ export PATH=$HOME/kaggle-data-science-bowl-2017-aidence-model/bin/p7zip:$PATH
 ```
 
 `7za` should be available to run after sourcing `init`.
+
+### Downloading Kaggle's datasets
+
+To be descibed (Datasets downloaded for me already)
+
+### Downloading LIDC-IDRI datasets
+
+To be descibed (Datasets downloaded for me already)
