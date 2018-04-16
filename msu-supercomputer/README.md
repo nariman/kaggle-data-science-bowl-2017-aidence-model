@@ -7,6 +7,7 @@ See [general README](../README.md) first.
 * [Inspecting environment](#inspecting-environment)
 * [Setting up the system environment](#setting-up-the-system-environment)
 * [Compiling Python](#compiling-python)
+* [Creating virtual environment](#creating-virtual-environment)
 
 ## Step-by-step guide (for myself, lol (not really, lol))0
 
@@ -34,6 +35,8 @@ preparation.
 $ mkdir $HOME/kaggle-data-science-bowl-2017-aidence-model
 $ cd $HOME/kaggle-data-science-bowl-2017-aidence-model
 ```
+
+What a name! Long name.
 
 Our directory structure:
 
@@ -196,3 +199,29 @@ $ which python3
 ```
 
 All right.
+
+### Creating virtual environment
+
+Create virtual environment. I called it `venv`. Simple.
+
+```bash
+$ cd $HOME/kaggle-data-science-bowl-2017-aidence-model
+```
+
+```bash
+$ python3 -m venv venv
+```
+
+First `venv` is a module name (Python's virtual environments).  
+Second `venv` is our name.
+
+Note that we can't to move created virtual environments. We can, but it's
+unnecessary headache.
+
+Activate the venv:
+
+```bash
+$ . ./venv/bin/activate
+```
+
+Now `python` should runs our compiled Python.
