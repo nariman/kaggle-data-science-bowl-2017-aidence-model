@@ -13,6 +13,7 @@ See [general README](../README.md) first.
 * [Compiling `p7zip`](#compiling-p7zip)
 * [Downloading Kaggle's datasets](#downloading-kaggles-datasets)
 * [Downloading LIDC-IDRI datasets](#downloading-lidc-idri-datasets)
+* [Cloning the sources repository](#cloning-the-sources-repository)
 
 ## Step-by-step guide (for myself, lol (not really, lol))0
 
@@ -46,6 +47,7 @@ What a name! Long name.
 Our directory structure:
 
 * `bin` - for compiled sources
+* `code` - for model's git repo sources
 * `datasets` - for datasets
     * `kaggle` - for Kaggle datasets
     * `lidc` - for lidc datasets
@@ -360,3 +362,17 @@ To be descibed (Datasets downloaded for me already)
 ### Downloading LIDC-IDRI datasets
 
 To be descibed (Datasets downloaded for me already)
+
+### Cloning the sources repository
+
+Just clone.
+
+```bash
+$ cd $HOME/kaggle-data-science-bowl-2017-aidence-model
+```
+
+```bash
+$ git clone https://bitbucket.org/aidence/kaggle-data-science-bowl-2017.git code
+```
+
+Note the `code` in the end. We cloning the repo into this directory.
