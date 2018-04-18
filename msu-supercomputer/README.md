@@ -14,6 +14,7 @@ See [general README](../README.md) first.
 * [Downloading Kaggle's datasets](#downloading-kaggles-datasets)
 * [Downloading LIDC-IDRI datasets](#downloading-lidc-idri-datasets)
 * [Cloning the sources repository](#cloning-the-sources-repository)
+* [Setting up datasets](#setting-up-datasets)
 
 ## Step-by-step guide (for myself, lol (not really, lol))0
 
@@ -375,4 +376,19 @@ $ cd $HOME/kaggle-data-science-bowl-2017-aidence-model
 $ git clone https://bitbucket.org/aidence/kaggle-data-science-bowl-2017.git code
 ```
 
-Note the `code` in the end. We cloning the repo into this directory.
+Note the `code` in the end. We're cloning the repo to this directory.
+
+### Setting up datasets
+
+Create symlinks to Kaggle's `stage2` dataset and `lidc` dataset dicom files as
+it described in authors' instruction.
+
+```bash
+$ cd $HOME/kaggle-data-science-bowl-2017-aidence-model
+```
+
+```bash
+$ ln -s ./datasets/kaggle/stage2 ./code/original-datasets/kaggle/dicom
+$ mkdir ./code/original-datasets/lidc/dicom
+$ ln -s ./datasets/lidc/*/ ./code/original-datasets/lidc/dicom
+```
